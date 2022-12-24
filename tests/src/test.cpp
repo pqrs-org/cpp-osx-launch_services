@@ -7,7 +7,7 @@ int main(void) {
   using namespace std::literals::string_literals;
 
   "register_application"_test = [] {
-    expect(pqrs::osx::launch_services::register_application("/System/Applications/TextEdit.app").to_string() == "noErr");
+    expect(pqrs::osx::launch_services::register_application("/System/Applications/TextEdit.app").to_string() == "noErr"s);
   };
 
   return 0;
