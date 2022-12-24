@@ -1,6 +1,6 @@
 #pragma once
 
-// pqrs::osx::launch_services v0.0
+// pqrs::osx::launch_services v1.0
 
 // (C) Copyright Takayama Fumihiko 2022.
 // Distributed under the Boost Software License, Version 1.0.
