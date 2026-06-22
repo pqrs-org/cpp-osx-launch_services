@@ -5,23 +5,21 @@
 // (See https://www.boost.org/LICENSE_1_0.txt)
 
 #include <CoreServices/CoreServices.h>
-#include <iostream>
+#include <ostream>
 #include <string>
 
-namespace pqrs {
-namespace osx {
-namespace launch_services {
+namespace pqrs::osx::launch_services {
 
 class status final {
 public:
-  status(OSStatus s) : status_(s) {
+  status(OSStatus s) noexcept : status_(s) {
   }
 
-  OSStatus get(void) const {
+  [[nodiscard]] OSStatus get() const noexcept {
     return status_;
   }
 
-  std::string to_string(void) const {
+  [[nodiscard]] std::string to_string() const {
 #define PQRS_OSX_LAUNCH_SERVICES_OSSTATUS_TO_STRING(OSSTATUS) \
   case OSSTATUS:                                              \
     return #OSSTATUS;
@@ -48,11 +46,11 @@ public:
     return std::string("Unknown OSStatus (") + std::to_string(status_) + ")";
   }
 
-  bool no_error(void) const {
+  [[nodiscard]] bool no_error() const noexcept {
     return status_ == noErr;
   }
 
-  operator bool(void) const {
+  [[nodiscard]] operator bool() const noexcept {
     return no_error();
   }
 
@@ -64,6 +62,4 @@ inline std::ostream& operator<<(std::ostream& stream, const status& value) {
   return stream << value.to_string();
 }
 
-} // namespace launch_services
-} // namespace osx
-} // namespace pqrs
+} // namespace pqrs::osx::launch_services
